@@ -169,9 +169,6 @@ public class createFolderPage {
         String css = this.getClass().getResource("createFolder.css").toExternalForm();
         scene.getStylesheets().add(css);
 
-        Image icon = new Image(getClass().getResource("/SignUpPage/folder.png").toExternalForm());
-        stage.getIcons().clear();
-        stage.getIcons().add(icon);
         // Stage setup
         stage.setTitle("FlashQuest");
         stage.setScene(scene);

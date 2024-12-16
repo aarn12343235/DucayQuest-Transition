@@ -117,9 +117,6 @@ public class quest {
         String css = this.getClass().getResource("QuestPage.css").toExternalForm();
         scene.getStylesheets().add(css);
 
-        Image icon = new Image(getClass().getResource("/SignUpPage/quest.png").toExternalForm());
-        stage.getIcons().clear();
-        stage.getIcons().add(icon);
         // Set up the stage
         stage.setTitle("FlashQuest");
         stage.setScene(scene);

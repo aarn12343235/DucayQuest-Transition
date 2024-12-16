@@ -78,7 +78,7 @@ public class Starting extends Application {
         String css = this.getClass().getResource("/StartingPage/startingPage.css").toExternalForm();
         scene.getStylesheets().add(css);
 
-        Image icon = new Image(getClass().getResource("/SignUpPage/start.png").toExternalForm());
+        Image icon = new Image(getClass().getResource("/SignUpPage/final.jpg").toExternalForm());
         stage.getIcons().add(icon);
 
         // Set up the stage

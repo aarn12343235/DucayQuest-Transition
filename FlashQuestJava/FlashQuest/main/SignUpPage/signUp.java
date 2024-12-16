@@ -120,7 +120,7 @@ public class signUp {
         String css = this.getClass().getResource("/SignUpPage/signUpPage.css").toExternalForm();
         scene.getStylesheets().add(css);
 
-        Image icon = new Image(getClass().getResource("/SignUpPage/computer.png").toExternalForm());
+        Image icon = new Image(getClass().getResource("/SignUpPage/final.jpg").toExternalForm());
         stage.getIcons().clear();
         stage.getIcons().add(icon);
 

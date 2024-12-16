@@ -204,9 +204,6 @@ public class smithCard{
         String css = this.getClass().getResource("createSmithCard.css").toExternalForm();
         scene.getStylesheets().add(css);
 
-        Image icon = new Image(getClass().getResource("/SignUpPage/folder.png").toExternalForm());
-        stage.getIcons().clear();
-        stage.getIcons().add(icon);
         // Set up the stage
         stage.setTitle("FlashQuest");
         stage.setScene(scene);
