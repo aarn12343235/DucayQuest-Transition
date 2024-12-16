@@ -58,6 +58,9 @@ public class loginPage {
         passwordField.setPrefHeight(35);
         passwordField.getStyleClass().add("placeholder");
 
+        Text errorMessage = new Text();
+        errorMessage.getStyleClass().add("error-message");
+
         Button signUp = new Button("Sign up");
         signUp.getStyleClass().add("signUp");
         signUp.setFont(vcrFont);
@@ -68,7 +71,7 @@ public class loginPage {
 
         // Use a Pane for manual positioning
         Pane root = new Pane();
-        root.getChildren().addAll(imageView, Title, email, emailText, password, passwordField, signUp, login); //murag panel.add sa swing
+        root.getChildren().addAll(imageView, Title, email, emailText, password, passwordField, signUp, login, errorMessage); //murag panel.add sa swing
 
         Title.layoutXProperty().bind(Bindings.multiply(0.3, root.widthProperty()));
         Title.layoutYProperty().bind(Bindings.multiply(0.39, root.heightProperty()));
@@ -91,7 +94,10 @@ public class loginPage {
         signUp.layoutXProperty().bind(Bindings.multiply(0.34, root.widthProperty()));
         signUp.layoutYProperty().bind(Bindings.multiply(0.35, root.widthProperty()));
 
-        LoginPageController controller = new LoginPageController(stage, emailText, passwordField, flashQuestController);
+        errorMessage.layoutXProperty().bind(Bindings.multiply(0.34, root.widthProperty()));
+        errorMessage.layoutYProperty().bind(Bindings.add(Bindings.multiply(0.30, root.heightProperty()), 85));
+
+        LoginPageController controller = new LoginPageController(stage, emailText, passwordField, flashQuestController, errorMessage);
         signUp.setOnAction(e -> controller.onSignUpButtonClicked());
         login.setOnAction(e -> controller.onLoginButtonClicked());
 

@@ -57,3 +57,13 @@
 .login:pressed {
     -fx-background-color: #0D7D43; /* Background color when pressed */
 }
+
+.error-message {
+    -fx-font-size: 18px; /* Font size for error message */
+    -fx-fill: #FF0000; /* Red color for error */
+    -fx-font-family: "VCR OSD MONO"; /* Same font as the rest */
+    -fx-font-weight: bold; /* Bold text for emphasis */
+    -fx-text-alignment: center; /* Center the text */
+    -fx-padding: 10px 0; /* Some padding for spacing */
+    -fx-opacity: 0.9; /* Slight transparency for error message */
+}
