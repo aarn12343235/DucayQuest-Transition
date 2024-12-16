@@ -14,6 +14,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.LineEvent;
+import java.io.File;
+
 public class BattleSceneController {
     private Text questionText;
     private Label resultLabel;
@@ -32,6 +38,7 @@ public class BattleSceneController {
     public TextField answerField;
     public Text errorMessage;
     FlashCardFolder card;
+    Clip clip;
 
     private int correctAnswers = 0; // Track correct answers
 
@@ -59,6 +66,7 @@ public class BattleSceneController {
 
         // Set the initial question
         questionText.setText(currentQuestion);
+        playSound();
     }
 
     public void handleSubmit(String userAnswer, Button submitButton, Button retreatButton, TextField answerField, Text errorMessage, Boolean music) {
@@ -174,6 +182,7 @@ public class BattleSceneController {
     public void handleRetreat(Stage stage) {
         // quest Quest = new quest(stage, flashQuestController);
         // Quest.show();
+        stopSound();
     }
 
     private void updateHealthBars() {
@@ -216,6 +225,7 @@ public class BattleSceneController {
                     pane.getChildren().remove(attackEffect);
                     hitEffectMove.play();
                 });
+                attackSound();
             });
 
             hitEffectMove.setOnFinished(f -> {
@@ -224,8 +234,59 @@ public class BattleSceneController {
 
         } else {
             moveForward.setOnFinished(e -> moveBackward.play());
+            attackSound();
         }
 
         moveForward.play();
+    }
+
+    public void playSound() {
+        try {
+            // Check if clip is already playing, if so, do nothing
+            if (clip != null && clip.isRunning()) {
+                return;  // Music is already playing, no need to start it again
+            }
+
+            File soundFile = new File(getClass().getResource("/FightPage/battleMusic.wav").toURI());
+            clip = AudioSystem.getClip();  // Use the class-level clip variable
+            clip.open(AudioSystem.getAudioInputStream(soundFile));
+            clip.loop(Clip.LOOP_CONTINUOUSLY); // Infinite loop
+            FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            volumeControl.setValue(-10.0f);  // Adjust the volume level here
+            clip.start();
+        } catch (Exception e) {
+            e.printStackTrace();  // Print stack trace for more details
+            System.out.println("Error playing sound: " + e.getMessage());
+        }
+    }
+    public void stopSound() {
+        if (clip != null && clip.isRunning()) {
+            clip.stop();  // Stop the clip if it's currently playing
+        }
+    }
+
+    public void attackSound() {
+        try {
+            // Create a new Clip instance for each attack to avoid reuse issues
+            File soundFile = new File(getClass().getResource("/FightPage/hitSoundEffect.wav").toURI());
+            Clip attackClip = AudioSystem.getClip();
+            attackClip.open(AudioSystem.getAudioInputStream(soundFile));
+
+            FloatControl volumeControl = (FloatControl) attackClip.getControl(FloatControl.Type.MASTER_GAIN);
+            volumeControl.setValue(-10.0f); // Adjust the volume level as needed
+
+            attackClip.start();
+
+            // Close the clip after it finishes playing
+            attackClip.addLineListener(event -> {
+                if (event.getType() == LineEvent.Type.STOP) {
+                    attackClip.close();
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error playing attack sound: " + e.getMessage());
+        }
     }
 }
