@@ -100,8 +100,13 @@ public class loginPage {
         String css = this.getClass().getResource("/LoginPage/loginPage.css").toExternalForm();
         scene.getStylesheets().add(css);
 
+
+        Image icon = new Image(getClass().getResource("/SignUpPage/computer.png").toExternalForm());
+        stage.getIcons().clear();
+        stage.getIcons().add(icon);
+
         // Set up the stage
-        stage.setTitle("FlashQuest");
+        stage.setTitle("Log In");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();

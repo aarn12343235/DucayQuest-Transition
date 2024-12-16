@@ -235,8 +235,11 @@ public class menu{
         String css = this.getClass().getResource("menuPage.css").toExternalForm();
         scene.getStylesheets().add(css);
 
+        Image icon = new Image(getClass().getResource("/SignUpPage/profile.png").toExternalForm());
+        stage.getIcons().clear();
+        stage.getIcons().add(icon);
         // Set up the stage
-        stage.setTitle("Create a SmithCard");
+        stage.setTitle("FlashQuest");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
@@ -280,7 +283,7 @@ public class menu{
     private ImageView userIcon (String classes) {
         Image warrior = new Image(getClass().getResource("Warrior.gif").toExternalForm());
         Image mage = new Image(getClass().getResource("Mage.gif").toExternalForm());
-        Image tank = new Image(getClass().getResource("Tank.gif").toExternalForm());
+        Image tank = new Image(getClass().getResource("Tank3.gif").toExternalForm());
 
         if (classes.equals("warrior")) {
             ImageView warriorView = new ImageView(warrior);

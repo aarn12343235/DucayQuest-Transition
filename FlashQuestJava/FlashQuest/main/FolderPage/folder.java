@@ -131,7 +131,7 @@ public class folder {
         String css = this.getClass().getResource("folderPage.css").toExternalForm();
         scene.getStylesheets().add(css);
 
-        stage.setTitle("Quest Page");
+        stage.setTitle("FlashQuest");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
